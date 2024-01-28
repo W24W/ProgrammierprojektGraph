@@ -1,1 +1,4 @@
 # ProgrammierprojektGraph
+
+- asdfa
+- -adsfa
