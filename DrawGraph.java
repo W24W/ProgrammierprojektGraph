@@ -24,6 +24,8 @@ public class DrawGraph extends JFrame {
   private Point startPoint;
   private Point startPointMaus;
   private Point endPoint;
+  
+  // Attribute MenuBar
   private JMenuBar jMenuBar1 = new JMenuBar();
     private JMenu jMenuBar1_File = new JMenu("File");
       private JMenuItem jMenuBar1_File_New = new JMenuItem("New Graph");
