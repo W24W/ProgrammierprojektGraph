@@ -154,7 +154,6 @@ public class DrawGraph extends JFrame {
     
 
   public void jMenuBar1_File_New_Java_ActionPerformed(ActionEvent evt) {
-    // TODO hier Quelltext einfügen
     
     g = getGraphics();
     
@@ -174,7 +173,7 @@ public class DrawGraph extends JFrame {
               abstand = false;
             } // end of if
           }
-          if (abstand) {
+          if (abstand == true) {
             graph.knotenEinfuegen(new Knoten(Character.toString(letter), e.getX(), e.getY()));
             letter++;
             draw();
@@ -183,19 +182,12 @@ public class DrawGraph extends JFrame {
       }
     });
     
-    // MouseListener zum Verschieben von Knoten mit rechter Maustaste
+    // MouseListener zum Verschieben von Knoten mit linker Maustaste und Strg
     addMouseListener(new MouseAdapter() {
       @Override
       public void mousePressed(MouseEvent e) {
-        if(e.getButton()==MouseEvent.BUTTON3){
-          Knoten[] knotenliste = graph.getKnotenliste();
-          for (int i = 0; i < knotenliste.length ; i++) {
-            int x = knotenliste[i].getX();
-            int y = knotenliste[i].getY();
-            if (Math.sqrt(Math.pow((x-e.getX()),2)+Math.pow((y-e.getY()),2))<KnotenSize/2) {
-              verschieben = knotenliste[i];
-            }
-          }
+        if (e.getButton() == MouseEvent.BUTTON1 && (e.getModifiers() & InputEvent.CTRL_MASK) != 0) {
+          verschieben = graph.findKnoten(e.getX(), e.getY());
         }
       }
     });
@@ -214,7 +206,7 @@ public class DrawGraph extends JFrame {
     addMouseListener(new MouseAdapter() {
       @Override
       public void mouseReleased(MouseEvent e) {
-        if(e.getButton()==MouseEvent.BUTTON3){
+        if(e.getButton()==MouseEvent.BUTTON1){
           verschieben = null;
         } 
       }

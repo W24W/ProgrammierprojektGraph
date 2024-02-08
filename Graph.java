@@ -30,6 +30,18 @@ public class Graph{
     return knotenListe[i];
   }
   
+  // Knoten getroffen?
+  public Knoten findKnoten(int x, int y){
+    Knoten gefunden = null;
+    for(int i = 0; i < anzahl; i++){
+      if (Math.sqrt(Math.pow((x-knotenListe[i].getX()),2)+Math.pow((y-knotenListe[i].getY()),2))<25) {
+        gefunden = knotenListe[i];
+      }
+    }
+    return gefunden;
+  }
+
+  // Kante getroffen?
   
   public Knoten[] getKnotenliste(){
     Knoten[] k = new Knoten[anzahl];
