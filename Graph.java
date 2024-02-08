@@ -30,7 +30,7 @@ public class Graph{
     return knotenListe[i];
   }
   
-  // Knoten getroffen?
+  // Knoten über Koordinaten finden
   public Knoten findKnoten(int x, int y){
     Knoten gefunden = null;
     for(int i = 0; i < anzahl; i++){
@@ -41,7 +41,25 @@ public class Graph{
     return gefunden;
   }
 
-  // Kante getroffen?
+  // Kante über Koordinaten finden
+  public Kante findKante(int x, int y){
+    double r = 0.3;
+    Kante gefunden = null;
+    // v: Vektor von k1 nach k2
+    double v1 = 0;
+    double v2 = 0;
+    while(r < 0.7){
+      for(int i = 0; i < anzahlKanten ; i++){
+        v1 = kantenliste[i].getk1().getX() + r * (kantenliste[i].getk2().getX()-kantenliste[i].getk1().getX());
+        v2 = kantenliste[i].getk1().getY() + r * (kantenliste[i].getk2().getY()-kantenliste[i].getk1().getY());
+        if (Math.sqrt(Math.pow((x-v1),2)+Math.pow((y-v2),2))<10) {
+          gefunden = kantenliste[i];
+        }
+      }
+      r += 0.01;
+    }
+    return gefunden;
+  }
   
   public Knoten[] getKnotenliste(){
     Knoten[] k = new Knoten[anzahl];

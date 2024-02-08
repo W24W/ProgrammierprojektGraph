@@ -22,6 +22,10 @@ public class Kante{
   public int getgewicht(){
     return gewicht;
     }
+
+  public void setgewicht(int g){
+    gewicht = g;
+  }
   
   public boolean getbearbeitet(){
     return bearbeitet;

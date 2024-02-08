@@ -181,6 +181,28 @@ public class DrawGraph extends JFrame {
         }  
       }
     });
+
+    // MouseListener zum Ändern des Kantengewichts
+    // MouseListener zum Zeichnen von Knoten
+    addMouseListener(new MouseAdapter() {
+      @Override
+      public void mousePressed(MouseEvent e) {
+        if(e.getButton()==MouseEvent.BUTTON3){
+          Kante kante = graph.findKante(e.getX(), e.getY());
+          if (kante != null) {
+            String gewicht = JOptionPane.showInputDialog(null, "Kantengewicht eingeben:", "Kantengewicht", JOptionPane.QUESTION_MESSAGE);
+            if (gewicht != null && !gewicht.isEmpty()) {
+              try {
+                kante.setgewicht(Integer.parseInt(gewicht));
+                //draw();
+              } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Ungültige Eingabe! Geben Sie eine Zahl ein.", "Fehler", JOptionPane.ERROR_MESSAGE);
+              }
+            }
+        }  
+      }
+    }
+    });
     
     // MouseListener zum Verschieben von Knoten mit linker Maustaste und Strg
     addMouseListener(new MouseAdapter() {
@@ -226,6 +248,7 @@ public class DrawGraph extends JFrame {
       }
     });
     
+
     addMouseMotionListener(new MouseMotionAdapter() {
       @Override
       public void mouseDragged(MouseEvent e) {
